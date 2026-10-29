@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOMAT GP SaaS — Créez votre service de fret aérien</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e1a;--bg2:#131a2e;--gold:#f59e0b;--red:#dc2626;--w:#f8fafc;--m:#94a3b8;--bd:rgba(255,255,255,0.1)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--w);line-height:1.6}
+header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(8px);background:rgba(10,14,26,0.9);border-bottom:1px solid var(--bd)}
+.hi{max-width:1200px;margin:0 auto;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.25rem;font-weight:900}.logo span{color:var(--gold)}.logo small{display:block;font-size:.625rem;color:var(--m);font-weight:400}
+.hc{display:flex;gap:.75rem;align-items:center}
+.btn{display:inline-block;padding:.5rem 1.25rem;border-radius:8px;font-weight:700;text-decoration:none;font-size:.875rem;transition:all .2s;border:none;cursor:pointer}
+.btn-g{background:var(--gold);color:var(--bg)}.btn-g:hover{opacity:.9;transform:translateY(-1px)}
+.btn-r{background:var(--red);color:#fff}.btn-r:hover{opacity:.9}
+.btn-o{border:1px solid var(--bd);color:var(--w);background:transparent}.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.hero{padding:8rem 1.5rem 4rem;text-align:center;max-width:900px;margin:0 auto}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem}
+.g{background:linear-gradient(135deg,var(--gold),var(--red));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.125rem;color:var(--m);max-width:600px;margin:0 auto 2rem}
+.hb{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.badge{padding:.25rem .75rem;border-radius:999px;font-size:.75rem;font-weight:600;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--gold)}
+.hcta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}.hcta .btn{padding:.75rem 2rem;font-size:1rem}
+.dp{max-width:1100px;margin:2rem auto;padding:0 1.5rem}.df{border-radius:12px;overflow:hidden;border:1px solid var(--bd);box-shadow:0 20px 60px -20px rgba(0,0,0,.5)}.df img{width:100%;display:block}
+.feat{max-width:1100px;margin:4rem auto;padding:0 1.5rem}.feat h2{text-align:center;font-size:2rem;margin-bottom:.5rem}.feat .sub{text-align:center;color:var(--m);margin-bottom:3rem}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.fc{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:1.75rem}.fc .ic{font-size:2rem;margin-bottom:.75rem}.fc h3{font-size:1.125rem;margin-bottom:.5rem}.fc p{color:var(--m);font-size:.875rem}
+.pri{max-width:1100px;margin:4rem auto;padding:0 1.5rem}.pri h2{text-align:center;font-size:2rem;margin-bottom:.5rem}.pri .sub{text-align:center;color:var(--m);margin-bottom:3rem}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.pc{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:2rem;text-align:center;position:relative}.pc.pop{border-color:var(--gold)}.pc.pop::before{content:"Populaire";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:.25rem 1rem;border-radius:999px;font-size:.75rem;font-weight:700}
+.pc h3{font-size:1.25rem;margin-bottom:.5rem}.pc .pr{font-size:2.5rem;font-weight:900;margin:1rem 0}.pc .pr small{font-size:.875rem;color:var(--m);font-weight:400}
+.pc ul{list-style:none;text-align:left;margin:1.5rem 0}.pc ul li{padding:.5rem 0;font-size:.875rem;color:var(--m);padding-left:1.5rem;position:relative}.pc ul li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
+.su{max-width:600px;margin:4rem auto;padding:0 1.5rem}.sc{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:2.5rem}
+.sc h2{text-align:center;font-size:1.5rem;margin-bottom:.5rem}.sc .sub{text-align:center;color:var(--m);margin-bottom:2rem;font-size:.875rem}
+.fg2{margin-bottom:1rem}.fg2 label{display:block;font-size:.75rem;color:var(--m);margin-bottom:.25rem;font-weight:600}.fg2 input,.fg2 select{width:100%;padding:.75rem;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--w);font-size:.875rem}.fg2 input:focus,.fg2 select:focus{border-color:var(--gold);outline:none}
+.fg2 .hint{font-size:.6875rem;color:var(--m);margin-top:.25rem}
+.ss{width:100%;padding:.875rem;font-size:1rem;margin-top:.5rem}.sm{text-align:center;margin-top:1rem;font-size:.875rem;min-height:1.25rem}.sm.ok{color:#22c55e}.sm.err{color:var(--red)}
+footer{border-top:1px solid var(--bd);margin-top:4rem;padding:2rem 1.5rem;text-align:center}footer p{color:var(--m);font-size:.75rem}footer a{color:var(--gold);text-decoration:none}
+@media(max-width:768px){.hero{padding:6rem 1rem 3rem}.fg,.pg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="hi"><div class="logo"><span>NOMAT</span> GP <small>SaaS Platform</small></div><div class="hc"><a href="#pricing" class="btn btn-o">Tarifs</a><a href="#signup" class="btn btn-g">Créer mon GP</a></div></div></header>
+<section class="hero">
+<div class="hb"><span class="badge">🚀 Déploiement 5 min</span><span class="badge">💳 Bictorys intégré</span><span class="badge">🌍 Multi-pays</span></div>
+<h1>Lancez votre service de <span class="g">fret aérien</span><br>en quelques minutes</h1>
+<p>Inscrivez-vous, configurez vos routes et tarifs, obtenez un site web pro avec réservations, suivi colis et paiement mobile money. <strong>Aucune compétence technique.</strong></p>
+<div class="hcta"><a href="#signup" class="btn btn-g">Créer mon GP →</a><a href="/s/nomat-gp" class="btn btn-o">Voir un exemple →</a></div>
+</section>
+<div class="dp"><div class="df"><img src="/img-logistics-scene.jpg" alt="Aperçu"/></div></div>
+<section class="feat"><h2>Tout inclus, clé en main</h2><p class="sub">Chaque GP dispose d'un site complet</p><div class="fg">
+<div class="fc"><div class="ic">📝</div><h3>Réservations en ligne</h3><p>Clients réservent directement. Infos expéditeur, destinataire, poids, paiement — tout capturé.</p></div>
+<div class="fc"><div class="ic">📦</div><h3>Suivi de colis</h3><p>Numéro unique par envoi. Timeline temps réel : préparation, transit, douane, livraison.</p></div>
+<div class="fc"><div class="ic">💳</div><h3>Paiement Bictorys</h3><p>Carte, Wave, Orange Money, Djamo — clients paient en ligne. Vous encaissez directement.</p></div>
+<div class="fc"><div class="ic">🌍</div><h3>Multi-destinations</h3><p>Configurez routes : Dakar→NY, Dakar→MTL, ou autres. Tarif au KG personnalisable.</p></div>
+<div class="fc"><div class="ic">📊</div><h3>Dashboard gestion</h3><p>Visualisez réservations, mettez à jour statuts, gérez clients — dashboard simple.</p></div>
+<div class="fc"><div class="ic">🎨</div><h3>Personnalisable</h3><p>Votre nom, logo, couleurs, tarifs, contacts. Chaque GP est unique.</p></div>
+</div></section>
+<section class="pri" id="pricing"><h2>Tarifs simples</h2><p class="sub">Annulable à tout moment</p><div class="pg">
+<div class="pc"><h3>Essai</h3><div class="pr">0$<small>/7j</small></div><ul><li>1 route</li><li>50 réservations</li><li>Site personnalisé</li><li>Suivi colis</li></ul><a href="#signup" class="btn btn-o" style="width:100%">Essayer</a></div>
+<div class="pc pop"><h3>Basique</h3><div class="pr">25$<small>/mois</small></div><ul><li>2 routes</li><li>Illimité</li><li>Paiement Bictorys</li><li>Dashboard</li></ul><a href="#signup" class="btn btn-g" style="width:100%">Choisir</a></div>
+<div class="pc"><h3>Pro</h3><div class="pr">50$<small>/mois</small></div><ul><li>Routes illimitées</li><li>Logo + couleurs</li><li>Analytics</li><li>Support prioritaire</li></ul><a href="#signup" class="btn btn-o" style="width:100%">Choisir</a></div>
+<div class="pc"><h3>Entreprise</h3><div class="pr">100$<small>/mois</small></div><ul><li>Multi-utilisateurs</li><li>API + webhooks</li><li>Domaine custom</li><li>SLA garanti</li></ul><a href="#signup" class="btn btn-o" style="width:100%">Choisir</a></div>
+</div></section>
+<section class="su" id="signup"><div class="sc"><h2>Créez votre GP</h2><p class="sub">Remplissez, payez, votre site est en ligne.</p><form id="sf">
+<div class="fg2"><label>Nom entreprise *</label><input type="text" id="cn" placeholder="Ex: TransAfric Express" required/></div>
+<div class="fg2"><label>URL (slug) *</label><input type="text" id="sl" placeholder="transafric → /s/transafric" required/><div class="hint">Minuscules + chiffres + tirets</div></div>
+<div class="fg2"><label>Email *</label><input type="email" id="em" placeholder="vous@exemple.com" required/></div>
+<div class="fg2"><label>Mot de passe * (min 6)</label><input type="password" id="pw" minlength="6" required/></div>
+<div class="fg2"><label>Plan *</label><select id="pl" required><option value="trial">Essai 7j (0$)</option><option value="basic">Basique (25$/mois)</option><option value="pro">Pro (50$/mois)</option><option value="enterprise">Entreprise (100$/mois)</option></select></div>
+<button type="submit" class="btn btn-r ss">Créer mon GP →</button><div class="sm" id="msg"></div></form></div></section>
+<script>
+document.getElementById('sf').addEventListener('submit',async function(e){e.preventDefault();const m=document.getElementById('msg'),b=e.target.querySelector('button');b.disabled=true;b.textContent='Création...';m.className='sm';m.textContent='';
+const d={companyName:document.getElementById('cn').value.trim(),slug:document.getElementById('sl').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-'),email:document.getElementById('em').value.trim(),password:document.getElementById('pw').value,plan:document.getElementById('pl').value};
+try{const r=await fetch('/api/tenants',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const j=await r.json();if(!r.ok)throw new Error(j.error);
+if(j.checkoutUrl){m.className='sm ok';m.textContent='Redirection paiement...';window.location.href=j.checkoutUrl;}
+else if(j.dashboardUrl){m.className='sm ok';m.textContent='✓ Compte créé !';setTimeout(()=>window.location.href=j.dashboardUrl,1500);}}catch(err){m.className='sm err';m.textContent='❌ '+err.message;b.disabled=false;b.textContent='Créer mon GP →';}});
+document.getElementById('cn').addEventListener('input',function(){const s=document.getElementById('sl');if(!s.dataset.e){s.value=this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').substring(0,40);}});
+document.getElementById('sl').addEventListener('input',function(){this.dataset.e='true';});
+</script>
+<footer><p>© 2026 NOMAT GP SaaS — Propulsé par <a href="https://sjfqyh.s.gy/standart_digital" target="_blank">Stand'Art Digital</a></p></footer>
+</body></html>

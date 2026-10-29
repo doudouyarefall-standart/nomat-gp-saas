@@ -1,0 +1,12 @@
+{
+  "name": "nomat-gp",
+  "version": "2.0.0",
+  "description": "NOMAT GP — Plateforme de fret aérien Dakar ↔ New York ↔ Montréal",
+  "private": true,
+  "dependencies": {
+    "@vercel/kv": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
