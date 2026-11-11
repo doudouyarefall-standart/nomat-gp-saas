@@ -42,7 +42,7 @@ export default async function handler(req, res) {
 
   if (c.logoUrl) html = html.replaceAll('src="logo-nomat-gp.png"', `src="${c.logoUrl}"`);
 
-  html = html.replace("</body>", `<div style="position:fixed;bottom:0;left:0;right:0;text-align:center;padding:6px;font-size:10px;background:rgba(0,0,0,0.7);color:#fff;z-index:9999;">Propulsé par <a href="${base}/" style="color:#f59e0b;text-decoration:none;font-weight:bold;">NOMAT GP SaaS</a></div></body>`);
+  html = html.replace("</body>", `<div style="position:fixed;bottom:0;left:0;right:0;text-align:center;padding:6px;font-size:10px;background:rgba(0,0,0,0.7);color:#fff;z-index:9999;">Propulsé par <a href="${base}/" style="color:#f59e0b;text-decoration:none;font-weight:bold;">GP Platform</a></div></body>`);
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "public, max-age=60");

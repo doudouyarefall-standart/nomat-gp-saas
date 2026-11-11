@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOMAT GP SaaS — Créez votre service de fret aérien</title>
+<title>GP Platform — Créez votre service de fret aérien en 5 minutes</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0a0e1a;--bg2:#131a2e;--gold:#f59e0b;--red:#dc2626;--w:#f8fafc;--m:#94a3b8;--bd:rgba(255,255,255,0.1)}
@@ -42,7 +42,7 @@ footer{border-top:1px solid var(--bd);margin-top:4rem;padding:2rem 1.5rem;text-a
 </style>
 </head>
 <body>
-<header><div class="hi"><div class="logo"><span>NOMAT</span> GP <small>SaaS Platform</small></div><div class="hc"><a href="#pricing" class="btn btn-o">Tarifs</a><a href="#signup" class="btn btn-g">Créer mon GP</a></div></div></header>
+<header><div class="hi"><div class="logo"><span>GP</span> Platform <small>by Stand'Art</small></div><div class="hc"><a href="#pricing" class="btn btn-o">Tarifs</a><a href="#signup" class="btn btn-g">Créer mon GP</a></div></div></header>
 <section class="hero">
 <div class="hb"><span class="badge">🚀 Déploiement 5 min</span><span class="badge">💳 Bictorys intégré</span><span class="badge">🌍 Multi-pays</span></div>
 <h1>Lancez votre service de <span class="g">fret aérien</span><br>en quelques minutes</h1>
@@ -70,7 +70,22 @@ footer{border-top:1px solid var(--bd);margin-top:4rem;padding:2rem 1.5rem;text-a
 <div class="fg2"><label>Email *</label><input type="email" id="em" placeholder="vous@exemple.com" required/></div>
 <div class="fg2"><label>Mot de passe * (min 6)</label><input type="password" id="pw" minlength="6" required/></div>
 <div class="fg2"><label>Plan *</label><select id="pl" required><option value="trial">Essai 7j (0$)</option><option value="basic">Basique (25$/mois)</option><option value="pro">Pro (50$/mois)</option><option value="enterprise">Entreprise (100$/mois)</option></select></div>
-<button type="submit" class="btn btn-r ss">Créer mon GP →</button><div class="sm" id="msg"></div></form></div></section>
+<div class="fg2">
+        <label>Logo de votre entreprise</label>
+        <input type="file" id="logoFile" accept="image/png,image/jpeg" style="padding:0.5rem"/>
+        <div class="hint">Formats: PNG, JPG. Sera affiché sur votre site GP.</div>
+      </div>
+      <div class="fg2">
+        <label>Vous n'avez pas de logo ?</label>
+        <div style="display:flex;gap:0.75rem;align-items:center;padding:0.75rem;border-radius:8px;border:1px solid var(--bd);background:rgba(245,158,11,0.05);">
+          <input type="checkbox" id="needLogo" style="width:auto"/>
+          <div>
+            <p style="font-size:0.8125rem;font-weight:600;">Créer mon logo par Stand'Art Digital</p>
+            <p style="font-size:0.6875rem;color:var(--m);">5 000 FCFA — logo pro livré sous 48h</p>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-r ss">Créer mon GP →</button><div class="sm" id="msg"></div></form></div></section>
 <script>
 document.getElementById('sf').addEventListener('submit',async function(e){e.preventDefault();const m=document.getElementById('msg'),b=e.target.querySelector('button');b.disabled=true;b.textContent='Création...';m.className='sm';m.textContent='';
 const d={companyName:document.getElementById('cn').value.trim(),slug:document.getElementById('sl').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-'),email:document.getElementById('em').value.trim(),password:document.getElementById('pw').value,plan:document.getElementById('pl').value};
@@ -79,6 +94,43 @@ if(j.checkoutUrl){m.className='sm ok';m.textContent='Redirection paiement...';wi
 else if(j.dashboardUrl){m.className='sm ok';m.textContent='✓ Compte créé !';setTimeout(()=>window.location.href=j.dashboardUrl,1500);}}catch(err){m.className='sm err';m.textContent='❌ '+err.message;b.disabled=false;b.textContent='Créer mon GP →';}});
 document.getElementById('cn').addEventListener('input',function(){const s=document.getElementById('sl');if(!s.dataset.e){s.value=this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').substring(0,40);}});
 document.getElementById('sl').addEventListener('input',function(){this.dataset.e='true';});
+
+// Logo upload preview
+document.getElementById('logoFile').addEventListener('change', function() {
+  var file = this.files[0];
+  if (file && file.size > 500000) {
+    alert('Logo trop volumineux (max 500KB). Utilisez une image plus petite.');
+    this.value = '';
+  }
+});
+
+// Inclure le logo dans les données de signup
+var origFetch = window.fetch;
+window.fetch = function(url, opts) {
+  if (url === '/api/tenants' && opts && opts.body) {
+    var data = JSON.parse(opts.body);
+    var logoFile = document.getElementById('logoFile');
+    var needLogo = document.getElementById('needLogo');
+    if (logoFile && logoFile.files[0]) {
+      // Convert to base64
+      var reader = new FileReader();
+      return new Promise(function(resolve) {
+        reader.onload = function() {
+          data.logoData = reader.result;
+          data.needLogoDesign = false;
+          opts.body = JSON.stringify(data);
+          resolve(origFetch(url, opts));
+        };
+        reader.readAsDataURL(logoFile.files[0]);
+      });
+    } else if (needLogo && needLogo.checked) {
+      data.needLogoDesign = true;
+      data.logoDesignFee = 5000;
+      opts.body = JSON.stringify(data);
+    }
+  }
+  return origFetch(url, opts);
+};
 </script>
-<footer><p>© 2026 NOMAT GP SaaS — Propulsé par <a href="https://sjfqyh.s.gy/standart_digital" target="_blank">Stand'Art Digital</a></p></footer>
+<footer><p>© 2026 GP Platform — par <a href="https://sjfqyh.s.gy/standart_digital" target="_blank">Stand'Art Digital</a></p></footer>
 </body></html>
