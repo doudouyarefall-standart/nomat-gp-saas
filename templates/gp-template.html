@@ -717,7 +717,7 @@ T_.readability=function(e,t){var n=T_(e),r=T_(t);return(Math.max(n.getLuminance(
       async function initiateBictorysPayment() {
         const ref = document.getElementById('success-ref')?.textContent?.trim();
         if (!ref) {
-          alert('⚠️ Aucune réservation à payer. Veuillez d\\'abord confirmer une réservation.');
+          alert('⚠️ Aucune réservation à payer. Veuillez d\'abord confirmer une réservation.');
           return;
         }
 
@@ -1403,7 +1403,7 @@ document.getElementById('booking-form').addEventListener('submit', async functio
       reference = result.reference;
       tracking = result.trackingNumber;
     } else {
-      alert('Erreur: ' + (result.error || 'Impossible d\\'enregistrer la réservation'));
+      alert('Erreur: ' + (result.error || 'Impossible d\'enregistrer la réservation'));
       return;
     }
   } catch(err) {
